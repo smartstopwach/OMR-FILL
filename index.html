@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" id="themeMeta" />
+  <meta name="description" content="OMR Fill – Android-first OMR answer sheet with instant scoring, answer key matching and results." />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon-192.png" type="image/png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <title>OMR Fill – Answer Sheet</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-top">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">◉</span>
+      <div>
+        <h1>OMR Fill</h1>
+        <small>Mark · Match key · Get result</small>
+      </div>
+    </div>
+    <div class="top-right">
+      <span id="clock" class="clock">00:00</span>
+      <button id="installBtn" class="btn small" data-act="install" hidden>📲 Install</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="tabs" role="tablist">
+      <button class="tab on" role="tab" data-tab="sheet">Answer Sheet</button>
+      <button class="tab" role="tab" data-tab="key">Answer Key</button>
+      <button class="tab" role="tab" data-tab="results">Result</button>
+      <button class="tab" role="tab" data-tab="mocks">Mocks</button>
+    </nav>
+
+    <section id="sheetView">
+      <div class="mockchip" id="mockChip"></div>
+      <details class="card setup" id="setup">
+        <summary><span class="sum-title">⚙️ Exam &amp; candidate settings</span><span class="cfg" id="cfgSummary"></span></summary>
+        <div class="form-grid">
+          <label>Candidate name<input id="fName" maxlength="40" autocomplete="off" placeholder="e.g. Rahul Kumar" /></label>
+          <label>Roll / Seat no.<input id="fRoll" maxlength="20" autocomplete="off" placeholder="e.g. 240123" /></label>
+          <label class="wide">Test title<input id="fTitle" maxlength="60" autocomplete="off" /></label>
+          <label>Questions<input id="fN" type="number" inputmode="numeric" min="1" max="200" /></label>
+          <label>Options
+            <select id="fOpts">
+              <option value="4">A – D (4)</option>
+              <option value="5">A – E (5)</option>
+            </select>
+          </label>
+          <label>Marks per correct<input id="fPlus" type="number" inputmode="decimal" step="0.25" min="0" max="10" /></label>
+          <label>Negative per wrong<input id="fMinus" type="number" inputmode="decimal" step="0.25" min="0" max="10" /></label>
+          <label>Timer (min, 0 = off)<input id="fTimer" type="number" inputmode="numeric" min="0" max="600" /></label>
+        </div>
+        <div class="switches">
+          <label class="sw">Dark mode<input type="checkbox" id="swTheme" /><i></i></label>
+          <label class="sw">Sound on tap<input type="checkbox" id="swSound" /><i></i></label>
+          <label class="sw">Vibration<input type="checkbox" id="swHaptic" /><i></i></label>
+          <label class="sw">Auto-next question<input type="checkbox" id="swNext" /><i></i></label>
+        </div>
+        <button class="btn danger block" data-act="reset">🗑 Reset this mock</button>
+      </details>
+
+      <div class="card status">
+        <div class="status-head"><div class="status-text" id="pText">Answered 0/50</div><span class="pct" id="pPct">0%</span></div>
+        <div class="track"><div id="pBar"></div></div>
+      </div>
+
+      <div class="hint" id="hint" hidden></div>
+
+      <div class="toolbar">
+        <input id="goto" type="number" inputmode="numeric" placeholder="Jump to Q#" min="1" />
+        <div class="chips" id="filters">
+          <button class="chip on" data-f="all">All</button>
+          <button class="chip" data-f="todo">Pending</button>
+          <button class="chip" data-f="review">⚑ Review</button>
+        </div>
+      </div>
+
+      <div id="list" class="list"></div>
+    </section>
+
+    <section id="resultsView" hidden></section>
+    <section id="mocksView" hidden></section>
+  </main>
+
+  <nav class="actionbar" id="actionbar">
+    <button class="btn ghost" data-act="undo" title="Undo">↶<span>Undo</span></button>
+    <button class="btn ghost" data-act="clear" title="Clear current">🧹<span>Clear</span></button>
+    <button class="btn ghost" data-act="bulk" title="Paste many answers">📋<span>Paste</span></button>
+    <button class="btn primary" id="submitBtn" data-act="submit">✅<span>Submit</span></button>
+  </nav>
+
+  <dialog id="bulk">
+    <h3>Paste answers</h3>
+    <p class="muted">Examples: <code>ABCDABCD</code> · <code>1A 2B 3C</code> · <code>1-A,2-C,3-D</code></p>
+    <textarea id="bulkText" rows="6" placeholder="Paste here…" autocapitalize="characters"></textarea>
+    <div class="dlg-actions">
+      <button class="btn ghost" data-act="bulkCancel">Cancel</button>
+      <button class="btn primary" data-act="bulkApply">Apply</button>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
