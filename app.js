@@ -7,7 +7,7 @@
   const STORE_KEY = 'omrfill:v2';
   const OLD_KEY = 'omrfill:v1';
   const LETTERS = ['A', 'B', 'C', 'D', 'E'];
-  const SETTINGS = ['theme', 'sound', 'haptics', 'autoNext'];
+  const SETTINGS = ['theme', 'sound', 'haptics', 'autoNext', 'instant'];
   const MAX_GAP_MS = 180000; // idle cap for per-question time (3 min)
 
   const $ = (s, r = document) => r.querySelector(s);
@@ -22,7 +22,7 @@
   const defaults = () => ({
     name: '', roll: '', title: 'Mock Test',
     n: 50, opts: 4, plus: 4, minus: 1, timerMin: 0,
-    theme: 'dark', sound: true, haptics: true, autoNext: true,
+    theme: 'dark', sound: true, haptics: true, autoNext: true, instant: false,
     tab: 'sheet', filter: 'all',
     answers: {}, key: {}, review: {}, qtime: {},
     startedAt: null, submittedAt: null, submitted: false,
@@ -218,10 +218,14 @@
   }
 
   function rowHTML(q, val, isRev, isKey, locked) {
-    const showRes = S.submitted && !isKey;
+    // Instant check: colour right/wrong as soon as answer is filled (needs key + toggle on)
+    const showRes = (S.submitted || S.instant) && !isKey;
     const k = showRes ? S.key[q] : undefined;
     let cls = '';
-    if (showRes && k) cls = !val ? 'skip' : val === k ? 'right' : 'wrong';
+    if (k) {
+      if (!val) cls = S.submitted ? 'skip' : '';
+      else cls = val === k ? 'right' : 'wrong';
+    }
     const bubs = validLetters().map((L) => {
       const on = val === L;
       const isAns = showRes && k === L;
@@ -480,6 +484,7 @@
     $('#swSound').checked = S.sound;
     $('#swHaptic').checked = S.haptics;
     $('#swNext').checked = S.autoNext;
+    $('#swInstant').checked = !!S.instant;
   }
 
   function renderAll() {
@@ -742,6 +747,10 @@
     $('#swSound').addEventListener('change', (e) => { S.sound = e.target.checked; save(); if (S.sound) beep(); });
     $('#swHaptic').addEventListener('change', (e) => { S.haptics = e.target.checked; save(); buzz(20); });
     $('#swNext').addEventListener('change', (e) => { S.autoNext = e.target.checked; save(); });
+    $('#swInstant').addEventListener('change', (e) => {
+      S.instant = e.target.checked; save(); renderSheet();
+      toast(S.instant ? 'Instant check ON – answers turant check honge' : 'Instant check OFF');
+    });
   }
 
   function bind() {

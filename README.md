@@ -15,6 +15,7 @@ No build step, no dependencies — plain HTML, CSS and JavaScript.
 - **Undo** (up to 100 steps), clear, reset.
 - **Timer**: elapsed time, or a countdown with auto-submit when time is up.
 - **Auto-next**: after filling, the sheet scrolls to the next question.
+- **Instant check** (settings toggle): ON karne par jaise hi answer bharo, sahi option hara aur galat laal ho jaata hai, aur sahi option ka ring dikhta hai. Answer key bhari honi chahiye. OFF par sheet normal rehti hai.
 - **Settings switches**: dark/light theme, sound on tap, vibration, auto-next.
 - **Export & share**: CSV download, native Android share sheet, print / save as PDF.
 - **Installable PWA** with offline support (service worker) — "Install" from Chrome's menu on Android.
