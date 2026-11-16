@@ -290,3 +290,29 @@ dialog textarea { margin: 10px 0; font-family: ui-monospace, Menlo, monospace; t
   .qrow { grid-template-columns: 44px 1fr 1fr 1fr 40px; font-size: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* ---------- Professional polish ---------- */
+.sum-title { font-weight: 700; }
+.setup summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.cfg {
+  font-size: 12px; font-weight: 600; color: var(--muted); background: var(--bub);
+  padding: 4px 10px; border-radius: 999px; font-variant-numeric: tabular-nums;
+}
+.status-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.status-head .status-text { margin: 0; }
+.pct {
+  font-size: 13px; font-weight: 800; color: #fff; padding: 3px 10px; border-radius: 999px;
+  background: linear-gradient(135deg, var(--acc), var(--acc-2)); font-variant-numeric: tabular-nums;
+}
+.tab { letter-spacing: .1px; }
+.row:nth-child(even) { background: color-mix(in srgb, var(--card) 85%, var(--bub)); }
+.qn { font-size: 16px; color: var(--ink); opacity: .75; }
+.bub { font-size: 16px; }
+.section-title { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; margin: 18px 4px 6px; }
+.card { box-shadow: 0 1px 2px rgba(0,0,0,.06); }
+.hero { padding: 18px; }
+.stat { box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+.btn { transition: background .15s, transform .08s; }
+.btn:active { transform: scale(.97); }
+.btn.primary:disabled { background: var(--line); box-shadow: none; }
+.actionbar .btn.primary { background: linear-gradient(135deg, var(--acc), var(--acc-2)); }

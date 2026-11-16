@@ -19,7 +19,7 @@
       <span class="logo" aria-hidden="true">◉</span>
       <div>
         <h1>OMR Fill</h1>
-        <small>Tap bubbles · Match key · Get result</small>
+        <small>Mark · Match key · Get result</small>
       </div>
     </div>
     <div class="top-right">
@@ -30,14 +30,14 @@
 
   <main class="wrap">
     <nav class="tabs" role="tablist">
-      <button class="tab on" role="tab" data-tab="sheet">✏️ Sheet</button>
-      <button class="tab" role="tab" data-tab="key">🔑 Answer Key</button>
-      <button class="tab" role="tab" data-tab="results">📊 Result</button>
+      <button class="tab on" role="tab" data-tab="sheet">Answer Sheet</button>
+      <button class="tab" role="tab" data-tab="key">Answer Key</button>
+      <button class="tab" role="tab" data-tab="results">Result</button>
     </nav>
 
     <section id="sheetView">
       <details class="card setup" id="setup">
-        <summary>⚙️ Candidate, exam &amp; settings</summary>
+        <summary><span class="sum-title">⚙️ Exam &amp; candidate settings</span><span class="cfg" id="cfgSummary"></span></summary>
         <div class="form-grid">
           <label>Candidate name<input id="fName" maxlength="40" autocomplete="off" placeholder="e.g. Rahul Kumar" /></label>
           <label>Roll / Seat no.<input id="fRoll" maxlength="20" autocomplete="off" placeholder="e.g. 240123" /></label>
@@ -63,7 +63,7 @@
       </details>
 
       <div class="card status">
-        <div class="status-text" id="pText">Answered 0/50</div>
+        <div class="status-head"><div class="status-text" id="pText">Answered 0/50</div><span class="pct" id="pPct">0%</span></div>
         <div class="track"><div id="pBar"></div></div>
       </div>
 

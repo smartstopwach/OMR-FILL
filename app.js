@@ -201,6 +201,7 @@
     const pct = S.n ? (cur / S.n) * 100 : 0;
 
     $('#pBar').style.width = pct + '%';
+    $('#pPct').textContent = Math.round(pct) + '%';
     $('#pText').textContent = isKey
       ? `Answer key filled ${keyN}/${S.n}`
       : `Answered ${ans}/${S.n} · Pending ${S.n - ans} · ⚑ ${revN}`;
@@ -317,6 +318,7 @@
   }
 
   function renderSetupValues() {
+    $('#cfgSummary').textContent = `${S.n} Q · ${S.opts === 5 ? 'A–E' : 'A–D'} · +${S.plus} / −${S.minus}${S.timerMin ? ' · ' + S.timerMin + ' min' : ''}`;
     $('#fName').value = S.name;
     $('#fRoll').value = S.roll;
     $('#fTitle').value = S.title;
