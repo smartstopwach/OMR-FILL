@@ -1,5 +1,6 @@
-// OMR Fill service worker – cache-first app shell for offline use.
-const CACHE = 'omrfill-v1';
+// OMR Fill service worker – network-first for app files (always fresh when online),
+// cache fallback so the app still opens offline.
+const CACHE = 'omrfill-v2';
 const SHELL = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest',
   './icons/icon-192.png', './icons/icon-512.png'];
 
@@ -17,13 +18,15 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
+  const sameOrigin = new URL(e.request.url).origin === self.location.origin;
+  if (!sameOrigin) return;
   e.respondWith(
-    caches.match(e.request).then((hit) => hit || fetch(e.request).then((res) => {
-      if (res.ok && new URL(e.request.url).origin === self.location.origin) {
+    fetch(e.request).then((res) => {
+      if (res.ok) {
         const copy = res.clone();
         caches.open(CACHE).then((c) => c.put(e.request, copy));
       }
       return res;
-    }).catch(() => caches.match('./index.html')))
+    }).catch(() => caches.match(e.request).then((hit) => hit || caches.match('./index.html')))
   );
 });
