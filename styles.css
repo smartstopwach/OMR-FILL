@@ -68,7 +68,7 @@ code { background: var(--bub); padding: 1px 6px; border-radius: 6px; }
 .wrap { max-width: 720px; margin: 0 auto; padding: 12px 12px 16px; }
 
 .tabs {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
   background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 5px;
   position: sticky; top: 64px; z-index: 15;
 }
@@ -256,7 +256,7 @@ dialog textarea { margin: 10px 0; font-family: ui-monospace, Menlo, monospace; t
 
 .qtable { display: flex; flex-direction: column; max-height: 420px; overflow: auto; border-radius: 10px; }
 .qrow {
-  display: grid; grid-template-columns: 52px 1fr 1fr 1.2fr 46px; gap: 6px; align-items: center;
+  display: grid; grid-template-columns: 44px 1fr 1fr 1.25fr 44px 56px; gap: 6px; align-items: center;
   padding: 9px 8px; font-size: 14px; border-bottom: 1px solid var(--line);
   font-variant-numeric: tabular-nums;
 }
@@ -287,7 +287,7 @@ dialog textarea { margin: 10px 0; font-family: ui-monospace, Menlo, monospace; t
   .bub { font-size: 15px; min-height: 44px; }
   .actionbar .btn span { display: none; }
   .form-grid { grid-template-columns: 1fr; }
-  .qrow { grid-template-columns: 44px 1fr 1fr 1fr 40px; font-size: 12px; }
+  .qrow { grid-template-columns: 38px 1fr 1fr 1.1fr 38px 46px; font-size: 11px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
@@ -316,3 +316,31 @@ dialog textarea { margin: 10px 0; font-family: ui-monospace, Menlo, monospace; t
 .btn:active { transform: scale(.97); }
 .btn.primary:disabled { background: var(--line); box-shadow: none; }
 .actionbar .btn.primary { background: linear-gradient(135deg, var(--acc), var(--acc-2)); }
+
+/* ---------- Mocks, charts, time ---------- */
+.mockchip {
+  display: inline-block; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 999px;
+  background: var(--card); border: 1px solid var(--line); margin: 10px 0 0;
+}
+.tm { color: var(--muted); font-variant-numeric: tabular-nums; }
+.chart-scroll { overflow-x: auto; margin: 10px -4px 0; padding: 0 4px 4px; }
+.time-stats { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--muted); margin-top: 10px; }
+.time-stats b { color: var(--ink); }
+.mock-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin: 12px 0 4px; }
+.mock-head h2 { margin: 0 0 4px; font-size: 20px; }
+.mock-head p { margin: 0; }
+.mock-list { display: flex; flex-direction: column; gap: 10px; padding-bottom: 12px; }
+.mock-card {
+  display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px;
+}
+.mock-card.active { border-color: var(--acc); box-shadow: 0 0 0 3px var(--glow); }
+.mock-main { min-width: 0; flex: 1 1 200px; }
+.mock-name { font-weight: 800; font-size: 16px; margin-bottom: 2px; }
+.mock-score { margin-top: 6px; font-size: 14px; color: var(--muted); }
+.mock-score b { color: var(--ink); }
+.mock-btns { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.tag {
+  font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--acc); color: #fff; vertical-align: middle;
+}
+.btn.small.danger { color: var(--bad); }

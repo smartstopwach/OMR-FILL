@@ -18,7 +18,10 @@ No build step, no dependencies — plain HTML, CSS and JavaScript.
 - **Settings switches**: dark/light theme, sound on tap, vibration, auto-next.
 - **Export & share**: CSV download, native Android share sheet, print / save as PDF.
 - **Installable PWA** with offline support (service worker) — "Install" from Chrome's menu on Android.
-- Everything is saved in the browser (localStorage), so a refresh does not lose the sheet.
+- **Multiple mocks**: "Mocks" tab se naya mock (Mock 1, Mock 2, ...) banao. Purana mock safe rahta hai. Kisi bhi mock ko open, rename ya delete kar sakte ho.
+- **Per-question time**: har question par lagaa time record hota hai. Result mein time chart aur slowest question dikhta hai. Time = ek question par tap se agle question par tap tak ka gap (3 min se zyada idle gap ginte nahi).
+- **Score chart**: Mocks tab mein sab mocks ka score bar chart mein dikhta hai.
+- Everything is saved in the browser (localStorage, key `omrfill:v2`). Purana single-sheet data apne aap "Mock 1" mein migrate ho jaata hai.
 
 ## Run locally
 

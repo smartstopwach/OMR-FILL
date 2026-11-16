@@ -33,9 +33,11 @@
       <button class="tab on" role="tab" data-tab="sheet">Answer Sheet</button>
       <button class="tab" role="tab" data-tab="key">Answer Key</button>
       <button class="tab" role="tab" data-tab="results">Result</button>
+      <button class="tab" role="tab" data-tab="mocks">Mocks</button>
     </nav>
 
     <section id="sheetView">
+      <div class="mockchip" id="mockChip"></div>
       <details class="card setup" id="setup">
         <summary><span class="sum-title">⚙️ Exam &amp; candidate settings</span><span class="cfg" id="cfgSummary"></span></summary>
         <div class="form-grid">
@@ -59,7 +61,7 @@
           <label class="sw">Vibration<input type="checkbox" id="swHaptic" /><i></i></label>
           <label class="sw">Auto-next question<input type="checkbox" id="swNext" /><i></i></label>
         </div>
-        <button class="btn danger block" data-act="reset">🗑 Reset everything</button>
+        <button class="btn danger block" data-act="reset">🗑 Reset this mock</button>
       </details>
 
       <div class="card status">
@@ -82,6 +84,7 @@
     </section>
 
     <section id="resultsView" hidden></section>
+    <section id="mocksView" hidden></section>
   </main>
 
   <nav class="actionbar" id="actionbar">
